@@ -24,10 +24,18 @@ public class CreditCard implements Serializable{
         return creditCardNumber;
     }
     /**
-     * Getter for the credit card experation date
+     * Getter for the credit card expiration date
      * @return the cards exp
      * */
     public String getCreditCardExp() {
         return creditCardExp;
+    }
+
+    @Override
+    public String toString() {
+        return "CreditCard{" +
+                "creditCardNumber='" + creditCardNumber + '\'' +
+                ", creditCardExp='" + creditCardExp + '\'' +
+                '}';
     }
 }
