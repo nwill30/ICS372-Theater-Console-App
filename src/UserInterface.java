@@ -338,7 +338,7 @@ public class UserInterface {
         if (result == null) {
             System.out.println("Could not add customer");
         }
-        System.out.println(result);
+        System.out.println(result.toString());
     }
 
     /**
