@@ -83,10 +83,12 @@ public class Show implements Serializable{
 
     @Override
     public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formatteDate = dateFormat.format(date.getTime());
         return "Show{" +
                 "title='" + title + '\'' +
                 ", id='" + id + '\'' +
-                ", date=" + date +
+                ", date=" + formatteDate +
                 ", period=" + period +
                 '}';
     }
