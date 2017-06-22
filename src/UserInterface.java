@@ -55,18 +55,26 @@ public class UserInterface {
                     break;
                 case LIST_CLIENTS: getClients();
                     break;
-                case ADD_CUSTOMER: addCustomer();;
+                case ADD_CUSTOMER: addCustomer();
                     break;
                 case REMOVE_CUSTOMER: removeCustomer();
                     break;
                 case LIST_CUSTOMERS: listCustomers();
                     break;
+                case ADD_CARD: addCard();
+                    break;
+                case REMOVE_CARD: removeCard();
+                    break;
                 case ADD_SHOW: addShow();
                     break;
                 case LIST_SHOWS: listShows();
+                    break;
+                case HELP: help();
+                    break;
             }
         }
     }
+
 
     /**
      * Made private for singleton pattern.
@@ -322,13 +330,13 @@ public class UserInterface {
         String address = getToken("Enter address");
         String phone = getToken("Enter phone");
         String creditCardNumber  = getToken("Enter Credit Card number");
-        String creditCardExp = getToken("Enter Credit Card experatio date");
+        String creditCardExp = getToken("Enter Credit Card expiration date");
         Customer result;
         result = theater.addCustomer(name, address, phone,creditCardNumber,creditCardExp);
         if (result == null) {
             System.out.println("Could not add customer");
         }
-        System.out.println(result.toString());
+        System.out.println(result);
     }
 
     /**
@@ -388,7 +396,7 @@ public class UserInterface {
      *
      */
     public void addShow() {
-        String showTitle = getToken("Enter show/paly title");
+        String showTitle = getToken("Enter show/play title");
         String clientId = getToken("Enter client id");
         String showDt  = getToken("Enter show start date in YYYY-MM-DD format");
         Integer showPeriod = Integer.parseInt(getToken("Enter show period in number of weeks"));
@@ -438,7 +446,8 @@ public class UserInterface {
             }
         }
     }
-        public void addCard(){
+
+    public void addCard(){
         String customerId = getToken("Enter customer id");
         Customer customer;
         if(CustomerList.instance().search(customerId) != null){
@@ -469,7 +478,6 @@ public class UserInterface {
         }
 
     }
-    
 
 }
 
