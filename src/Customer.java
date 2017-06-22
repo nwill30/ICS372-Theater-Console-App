@@ -59,7 +59,21 @@ public class Customer implements Serializable{
 
     public String toString()
     {
-        String result = String.format("CustomerID: %s , Name: %s , Address: %s , Phone Number: %s",this.id,this.name,this.address,this.phone);
+        String result = String.format("CustomerID: %s , Name: %s , Address: %s , Phone Number: %s" +
+                " , creditCards: %s",this.id,this.name,this.address,this.phone,this.creditCards);
         return result;
     }
+
+    public void customerAddCard(CreditCard c){
+        creditCards.add(c);
+    }
+
+    public void customerRemoveCard(CreditCard c){
+        creditCards.remove(c);
+
+    }
+    public int customerCCListSize(){
+        return creditCards.size();
+    }
+
 }
