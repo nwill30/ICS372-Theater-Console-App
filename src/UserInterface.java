@@ -69,6 +69,8 @@ public class UserInterface {
                     break;
                 case LIST_SHOWS: listShows();
                     break;
+                case STORE_DATA: storeData();
+                    break;
                 case HELP: help();
                     break;
             }
@@ -115,10 +117,10 @@ public class UserInterface {
         try {
             Theater tempLibrary = Theater.retrieve();
             if (tempLibrary != null) {
-                System.out.println(" The library has been successfully retrieved from the file LibraryData \n" );
+                System.out.println(" The theater has been successfully retrieved from the file TheaterData \n" );
                 theater = tempLibrary;
             } else {
-                System.out.println("File doesnt exist; creating new library" );
+                System.out.println("File doesn't exist; creating new Theater" );
                 theater = Theater.instance();
             }
         } catch(Exception cnfe) {
@@ -230,8 +232,8 @@ public class UserInterface {
      */
     public void help()
     {
-        System.out.println("Enter a number between 0 and 12 as explained below:");
-        System.out.println(EXIT + " to Exit\n");
+        System.out.println("Enter a number between 0 and 13 as explained below:");
+        System.out.println(EXIT + " to Exit");
         System.out.println(ADD_CLIENT + " to add client(s)");
         System.out.println(REMOVE_CLIENT + " to  remove client(s)");
         System.out.println(LIST_CLIENTS + " to  print clients");
@@ -476,6 +478,10 @@ public class UserInterface {
             else
                 System.out.println("There must be at least 1 Credit Card on file");
         }
+
+    }
+    public void storeData(){
+        theater.save();
 
     }
 
