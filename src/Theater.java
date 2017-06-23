@@ -174,4 +174,28 @@ public class Theater implements Serializable{
         }
         return false;
     }
+
+    private void writeObject(java.io.ObjectOutputStream output){
+        try{
+            output.defaultWriteObject();
+            output.writeObject(theater);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void readObject(java.io.ObjectInputStream input){
+        try{
+            input.defaultReadObject();
+            if(theater == null){
+                theater = (Theater) input.readObject();
+            }else{
+                input.readObject();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

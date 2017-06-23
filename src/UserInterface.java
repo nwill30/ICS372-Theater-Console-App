@@ -71,6 +71,8 @@ public class UserInterface {
                     break;
                 case STORE_DATA: storeData();
                     break;
+                case RETRIEVE_DATA: retrieve();
+                    break;
                 case HELP: help();
                     break;
             }
@@ -90,7 +92,7 @@ public class UserInterface {
             retrieve();
         }else{
             theater = Theater.instance();
-        }
+    }
     }
 
     /**
@@ -115,10 +117,10 @@ public class UserInterface {
     private void retrieve()
     {
         try {
-            Theater tempLibrary = Theater.retrieve();
-            if (tempLibrary != null) {
+            Theater tempTheater = Theater.retrieve();
+            if (tempTheater != null) {
                 System.out.println(" The theater has been successfully retrieved from the file TheaterData \n" );
-                theater = tempLibrary;
+                theater = tempTheater;
             } else {
                 System.out.println("File doesn't exist; creating new Theater" );
                 theater = Theater.instance();
@@ -338,7 +340,7 @@ public class UserInterface {
         if (result == null) {
             System.out.println("Could not add customer");
         }
-        System.out.println(result.toString());
+        System.out.println(result);
     }
 
     /**
@@ -481,7 +483,10 @@ public class UserInterface {
 
     }
     public void storeData(){
-        theater.save();
+        if(Theater.save())
+            System.out.println("Save successful");
+        else
+            System.out.println("Save failed");
 
     }
 

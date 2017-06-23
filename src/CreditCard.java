@@ -30,4 +30,12 @@ public class CreditCard implements Serializable{
     public String getCreditCardExp() {
         return creditCardExp;
     }
+
+    @Override
+    public String toString() {
+        return "CreditCard{" +
+                "creditCardNumber='" + creditCardNumber + '\'' +
+                ", creditCardExp='" + creditCardExp + '\'' +
+                '}';
+    }
 }
