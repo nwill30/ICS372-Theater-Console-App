@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Calendar;
 import java.util.Iterator;
 
 /**
@@ -159,6 +160,22 @@ public class Theater implements Serializable{
             return (creditCard);
         }
         return null;
+    }
+
+    public Show addShow(String showTitle, Calendar showDate, Integer showPeriod, Integer ticketPrice,String clientId)
+    {
+        Show show = new Show(showTitle,showDate,showPeriod,ticketPrice);
+        Client client = theater.getClient(clientId);
+        if (client == null) {
+            System.out.println("Specified client doesn't exist");
+            return null;
+        } else {
+            client.addShow(show);
+            System.out.println("Show added for the client");
+            System.out.println(client.toString());
+            return show;
+        }
+
     }
 
     public static boolean save() {

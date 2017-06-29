@@ -12,6 +12,7 @@ public class Show implements Serializable{
     private String id;
     private Calendar date;
     private int period;
+    private int ticketPrice;
     private static final long serialVersionUID = 1L;
     private static final String SHOW_STRING = "SH";
 
@@ -21,11 +22,12 @@ public class Show implements Serializable{
      * @param title name of the show
      * @param period the number of weeks the show will run
      * */
-    public Show(String title, Calendar date, int period)
+    public Show(String title, Calendar date, int period, int ticketPrice)
     {
         this.title = title;
         this.date = date;
         this.period = period;
+        this.ticketPrice = ticketPrice;
         id = SHOW_STRING + (ClientIdServer.instance()).getId();
     }
     /**
