@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by teche on 6/21/2017.
  */
-public class CreditCardList implements Serializable{
+public class CreditCardList extends ItemList<CreditCard, String>{
     private static final long serialVersionUIS =1L;
     private List creditCards =new LinkedList();
     private static CreditCardList creditCardList;
@@ -35,13 +35,8 @@ public class CreditCardList implements Serializable{
      *
      */
     public CreditCard search(String creditCardNumber) {
-        for (Iterator iterator = creditCards.iterator(); iterator.hasNext(); ) {
-            CreditCard creditCard = (CreditCard) iterator.next();
-            if (creditCard.getCreditCardNumber().equals(creditCardNumber)) {
-                return creditCard;
-            }
-        }
-        return null;
+
+        return super.search(creditCardNumber);
     }
 
     /**
@@ -50,8 +45,8 @@ public class CreditCardList implements Serializable{
      * @return true iff the member could be inserted. Currently always true
      */
     public boolean insertCreditCard(CreditCard creditCard) {
-        creditCards.add(creditCard);
-        return true;
+
+        return super.add(creditCard);
     }
 
     /**
@@ -66,7 +61,7 @@ public class CreditCardList implements Serializable{
         {
             return false;
         }else{
-            return creditCards.remove(creditCard);
+            return super.remove(creditCard);
         }
     }
 
@@ -120,6 +115,6 @@ public class CreditCardList implements Serializable{
      * */
     public Iterator getCreditCards()
     {
-        return creditCards.iterator();
+        return super.iterator();
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by z077391 on 6/20/2017.
  */
-public class Client implements Serializable{
+public class Client implements Serializable, Matchable<String> {
     private static final long serialVersionUID = 1L;
     private String name;
     private String address;

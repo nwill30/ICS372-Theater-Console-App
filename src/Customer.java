@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by teche on 6/21/2017.
  */
-public class Customer implements Serializable, Iterable{
+public class Customer implements Serializable, Iterable, Matchable<String> {
     private static final long serialVersionUID = 1L;
     private String name;
     private String address;

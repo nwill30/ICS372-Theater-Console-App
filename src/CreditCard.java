@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
  * Created by teche on 6/21/2017.
  */
-public class CreditCard implements Serializable{
+public class CreditCard implements Serializable, Matchable<String> {
     private String creditCardNumber;
     private String creditCardExp;
 
