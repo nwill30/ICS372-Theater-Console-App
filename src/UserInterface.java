@@ -404,6 +404,7 @@ public class UserInterface {
         String clientId = getToken("Enter client id");
         String showDt  = getToken("Enter show start date in YYYY-MM-DD format");
         Integer showPeriod = Integer.parseInt(getToken("Enter show period in number of weeks"));
+        Integer ticketPrice = Integer.parseInt(getToken("Enter show ticket price"));
 
         Date date = null;
         String pattern = "yyyy-MM-dd";
@@ -415,24 +416,13 @@ public class UserInterface {
 
         Calendar showDate = Calendar.getInstance();
         showDate.setTime(date);
-
-
-        Show show = new Show(showTitle,showDate,showPeriod);
-        if (show == null) {
+        Show result;
+        result = theater.addShow(showTitle,showDate,showPeriod,ticketPrice,clientId);
+        if (result == null) {
             System.out.println("Could not add show");
         } else {
-            System.out.println(show.toString());
+            System.out.println(result.toString());
         }
-
-        Client client = theater.getClient(clientId);
-        if (client == null) {
-            System.out.println("Specified client doesn't exist");
-        } else {
-            client.addShow(show);
-            System.out.println("Show added for the client");
-            System.out.println(client.toString());
-        }
-
     }
 
     /**
