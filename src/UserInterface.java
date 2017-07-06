@@ -31,7 +31,12 @@ public class UserInterface {
     private static final int LIST_SHOWS = 10;
     private static final int STORE_DATA = 11;
     private static final int RETRIEVE_DATA = 12;
-    private static final int HELP = 13;
+    private static final int SELL_REGULAR_TICKETS = 13;
+    private static final int SELL_ADVANCE_TICKETS = 14;
+    private static final int SELL_STUDENT_ADVANCE_TICKETS = 15;
+    private static final int PAY_CLIENT = 16;
+    private static final int PRINT_TICKETS = 17;
+    private static final int HELP = 18;
     /**
      * The method to start the app. Simply calls process()
      * @param args not used
@@ -72,6 +77,8 @@ public class UserInterface {
                 case STORE_DATA: storeData();
                     break;
                 case RETRIEVE_DATA: retrieve();
+                    break;
+                case SELL_REGULAR_TICKETS: sellRegularTickets();
                     break;
                 case HELP: help();
                     break;
@@ -234,7 +241,7 @@ public class UserInterface {
      */
     public void help()
     {
-        System.out.println("Enter a number between 0 and 13 as explained below:");
+        System.out.println("Enter a number between 0 and 18 as explained below:");
         System.out.println(EXIT + " to Exit");
         System.out.println(ADD_CLIENT + " to add client(s)");
         System.out.println(REMOVE_CLIENT + " to  remove client(s)");
@@ -248,7 +255,12 @@ public class UserInterface {
         System.out.println(LIST_SHOWS + " to  print shows");
         System.out.println(STORE_DATA + " to  save data");
         System.out.println(RETRIEVE_DATA + " to  retrieve data");
+        System.out.println(SELL_REGULAR_TICKETS + " for sell advance tickets");
+        System.out.println(SELL_STUDENT_ADVANCE_TICKETS + " for sell student advance tickets");
+        System.out.println(PAY_CLIENT + " for pay clients");
+        System.out.println(PRINT_TICKETS + " for printing tickets for a certain day");
         System.out.println(HELP + " for help");
+
     }
 
     /**
@@ -478,6 +490,36 @@ public class UserInterface {
             System.out.println("Save successful");
         else
             System.out.println("Save failed");
+
+    }
+
+    /**
+     * Method to call for selling Regular tickets
+     */
+    public void sellRegularTickets(){
+        String customerName = getToken("Enter customer name");
+        String showName = getToken("Enter show name");
+        String creditCardNumber  = getToken("Enter Credit Card number");
+        String showDt  = getToken("Enter show date in YYYY-MM-DD format");
+        String showId = "SH1";
+        String customerId = "CU1";
+
+        Date date = null;
+        String pattern = "yyyy-MM-dd";
+        try {
+            date = new SimpleDateFormat(pattern).parse(showDt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar showDate = Calendar.getInstance();
+        showDate.setTime(date);
+
+        Double totalPrice = 0.0;
+        int quantity = 1;
+        Ticket ticket = new Ticket(totalPrice,quantity, showId, showDate,customerId,creditCardNumber,"REGULAR");
+
+        theater.getTicketsList().add(ticket);
+
 
     }
 

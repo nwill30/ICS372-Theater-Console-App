@@ -1,6 +1,13 @@
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by z077391 on 6/20/2017.
@@ -18,6 +25,7 @@ public class Theater implements Serializable{
     private CreditCardList creditCardList;
     private CustomerList customerList;
     private static Theater theater;
+    private List<Ticket> ticketsList;
     /**
      * Private for the singleton pattern
      * Creates the catalog and member collection objects
@@ -27,6 +35,7 @@ public class Theater implements Serializable{
         clientList = ClientList.instance();
         customerList = CustomerList.instance();
         creditCardList = CreditCardList.instance();
+        ticketsList = new LinkedList<Ticket>();
     }
 
     /**
@@ -215,4 +224,11 @@ public class Theater implements Serializable{
         }
     }
 
+    public List<Ticket> getTicketsList() {
+        return ticketsList;
+    }
+
+    public void setTicketsList(List<Ticket> ticketsList) {
+        this.ticketsList = ticketsList;
+    }
 }
