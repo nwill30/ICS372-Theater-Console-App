@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 
+
 /**
  * Created by bputrevu on 7/6/17.
  */
@@ -97,5 +98,6 @@ public class Ticket implements Serializable{
                 ", creditCardNumber='" + creditCardNumber + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+
     }
 }
