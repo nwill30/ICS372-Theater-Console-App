@@ -12,7 +12,7 @@ public class Show implements Serializable{
     private String id;
     private Calendar date;
     private int period;
-    private int ticketPrice;
+    private double ticketPrice;
     private static final long serialVersionUID = 1L;
     private static final String SHOW_STRING = "SH";
 
@@ -23,7 +23,7 @@ public class Show implements Serializable{
      * @param period the number of weeks the show will run
      * @param ticketPrice the price of the shows ticket
      * */
-    public Show(String title, Calendar date, int period, int ticketPrice)
+    public Show(String title, Calendar date, int period, double ticketPrice)
     {
         this.title = title;
         this.date = date;
@@ -87,19 +87,19 @@ public class Show implements Serializable{
      * Getter for the show regular ticket price
      * @return  the price of a regular ticket
      * */
-    public int getTicketPrice() {
+    public double getTicketPrice() {
         return ticketPrice;
     }
 
+
     @Override
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formatteDate = dateFormat.format(date.getTime());
         return "Show{" +
                 "title='" + title + '\'' +
                 ", id='" + id + '\'' +
-                ", date=" + formatteDate +
+                ", date=" + date +
                 ", period=" + period +
+                ", ticketPrice=" + ticketPrice +
                 '}';
     }
 }

@@ -13,6 +13,7 @@ public class Client implements Serializable{
     private String id;
     private List<Show> shows = new LinkedList();
     private static final String CLIENT_STRING = "CL";
+    private double balance;
 
     /**
      * Represents a single member
@@ -26,6 +27,7 @@ public class Client implements Serializable{
         this.address = address;
         this.phone = phone;
         id = CLIENT_STRING + (ClientIdServer.instance()).getId();
+        balance = 0.0;
     }
 
 
@@ -75,6 +77,14 @@ public class Client implements Serializable{
         return shows;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     /**
      * Return string of the Client
      * String contains id, name, address and phone number
@@ -87,6 +97,9 @@ public class Client implements Serializable{
                 ", phone='" + phone + '\'' +
                 ", id='" + id + '\'' +
                 ", shows=" + shows.toString() +
+                ", balance=" + balance +
                 '}';
     }
+
+
 }
