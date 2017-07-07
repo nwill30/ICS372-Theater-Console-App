@@ -13,6 +13,7 @@ public class Customer implements Serializable, Iterable{
     private String phone;
     private String id;
     private List<CreditCard> creditCards = new LinkedList<CreditCard>();
+    private List<Ticket> customerTickets = new LinkedList<Ticket>();
     private static final String CUSTOMER_STRING = "CU";
 
     /**
@@ -85,5 +86,13 @@ public class Customer implements Serializable, Iterable{
     @Override
     public Iterator iterator() {
         return creditCards.listIterator();
+    }
+
+    public List<Ticket> getCustomerTickets() {
+        return customerTickets;
+    }
+
+    public void setCustomerTickets(List<Ticket> customerTickets) {
+        this.customerTickets = customerTickets;
     }
 }

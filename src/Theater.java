@@ -26,6 +26,9 @@ public class Theater implements Serializable{
     private CustomerList customerList;
     private static Theater theater;
     private List<Ticket> ticketsList;
+
+
+
     /**
      * Private for the singleton pattern
      * Creates the catalog and member collection objects
@@ -36,6 +39,7 @@ public class Theater implements Serializable{
         customerList = CustomerList.instance();
         creditCardList = CreditCardList.instance();
         ticketsList = new LinkedList<Ticket>();
+
     }
 
     /**
@@ -171,7 +175,7 @@ public class Theater implements Serializable{
         return null;
     }
 
-    public Show addShow(String showTitle, Calendar showDate, Integer showPeriod, Integer ticketPrice,String clientId)
+    public Show addShow(String showTitle, Calendar showDate, Integer showPeriod, Double ticketPrice,String clientId)
     {
         Show show = new Show(showTitle,showDate,showPeriod,ticketPrice);
         Client client = theater.getClient(clientId);
@@ -231,4 +235,13 @@ public class Theater implements Serializable{
     public void setTicketsList(List<Ticket> ticketsList) {
         this.ticketsList = ticketsList;
     }
+
+    public CustomerList getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(CustomerList customerList) {
+        this.customerList = customerList;
+    }
+
 }

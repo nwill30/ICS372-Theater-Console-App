@@ -23,7 +23,7 @@ public class Show implements Serializable{
      * @param period the number of weeks the show will run
      * @param ticketPrice the price of the shows ticket
      * */
-    public Show(String title, Calendar date, int period, int ticketPrice)
+    public Show(String title, Calendar date, int period, double ticketPrice)
     {
         this.title = title;
         this.date = date;
