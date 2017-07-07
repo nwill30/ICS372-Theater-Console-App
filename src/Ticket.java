@@ -1,36 +1,103 @@
 import java.io.Serializable;
 import java.util.Calendar;
 
+
+
 /**
- * Created by teche on 6/28/2017.
+ * Created by bputrevu on 7/6/17.
  */
-public abstract class Ticket implements Serializable{
+public class Ticket implements Serializable{
 
-    private String serialNumber;
-    private Calendar date;
-    private int price;
+    private String id;
+    private Double totalPrice;
+    // REGULAR or ADVANCED or STUDENTADVANCED
+    private int quantity;
+    private String showId;
+    private Calendar showDate;
+    private String customerId;
+    private String creditCardNumber;
+    private String type;
 
-    public String getSerialNumber() {
-        return serialNumber;
+
+    public Ticket(Double totalPrice, int quantity, String showId, Calendar showDate, String customerId, String creditCardNumber, String type) {
+        this.totalPrice = totalPrice;
+        this.quantity = quantity;
+        this.showId = showId;
+        this.showDate = showDate;
+        this.customerId = customerId;
+        this.creditCardNumber = creditCardNumber;
+        this.type = type;
+        id = "TI" + (ClientIdServer.instance()).getId();
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public Calendar getDate() {
-        return date;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void setDate(Calendar date) {
-        this.date = date;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getPrice() {
-        return price;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public String getShowId() {
+        return showId;
+    }
+
+    public void setShowId(String showId) {
+        this.showId = showId;
+    }
+
+    public Calendar getShowDate() {
+        return showDate;
+    }
+
+    public void setShowDate(Calendar showDate) {
+        this.showDate = showDate;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id='" + id + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", quantity=" + quantity +
+                ", showId='" + showId + '\'' +
+                ", showDate=" + showDate +
+                ", customerId='" + customerId + '\'' +
+                ", creditCardNumber='" + creditCardNumber + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+
     }
 }

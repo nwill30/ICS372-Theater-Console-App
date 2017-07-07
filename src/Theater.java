@@ -1,5 +1,13 @@
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by z077391 on 6/20/2017.
@@ -16,7 +24,11 @@ public class Theater implements Serializable{
     private ClientList clientList;
     private CreditCardList creditCardList;
     private CustomerList customerList;
+    private List<Ticket> ticketsList;
     private static Theater theater;
+
+
+
     /**
      * Private for the singleton pattern
      * Creates the catalog and member collection objects
@@ -26,6 +38,8 @@ public class Theater implements Serializable{
         clientList = ClientList.instance();
         customerList = CustomerList.instance();
         creditCardList = CreditCardList.instance();
+        ticketsList = new LinkedList<Ticket>();
+
     }
 
     /**
@@ -161,6 +175,22 @@ public class Theater implements Serializable{
         return null;
     }
 
+    public Show addShow(String showTitle, Calendar showDate, Integer showPeriod, Double ticketPrice,String clientId)
+    {
+        Show show = new Show(showTitle,showDate,showPeriod,ticketPrice);
+        Client client = theater.getClient(clientId);
+        if (client == null) {
+            System.out.println("Specified client doesn't exist");
+            return null;
+        } else {
+            client.addShow(show);
+            System.out.println("Show added for the client");
+            System.out.println(client.toString());
+            return show;
+        }
+
+    }
+
     public static boolean save() {
         try{
             FileOutputStream file = new FileOutputStream("TheaterData");
@@ -196,6 +226,22 @@ public class Theater implements Serializable{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Ticket> getTicketsList() {
+        return ticketsList;
+    }
+
+    public void setTicketsList(List<Ticket> ticketsList) {
+        this.ticketsList = ticketsList;
+    }
+
+    public CustomerList getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(CustomerList customerList) {
+        this.customerList = customerList;
     }
 
 }
