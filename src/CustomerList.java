@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by teche on 6/21/2017.
  */
-public class CustomerList implements Serializable{
+public class CustomerList extends ItemList<Customer, String>{
     private static final long serialVersionUIS =1L;
     private List customers = new LinkedList();
     private static CustomerList customerList;
@@ -32,13 +32,7 @@ public class CustomerList implements Serializable{
      *
      */
     public Customer search(String customerId) {
-        for (Iterator iterator = customers.iterator(); iterator.hasNext(); ) {
-            Customer customer = (Customer) iterator.next();
-            if (customer.getId().equals(customerId)) {
-                return customer;
-            }
-        }
-        return null;
+        return super.search(customerId);
     }
 
     /**
@@ -47,8 +41,7 @@ public class CustomerList implements Serializable{
      * @return true iff the member could be inserted. Currently always true
      */
     public boolean insertCustomer(Customer customer) {
-        customers.add(customer);
-        return true;
+        return super.add(customer);
     }
 
     /**
@@ -63,7 +56,7 @@ public class CustomerList implements Serializable{
         {
             return false;
         }else{
-             boolean result = customers.remove(customer);
+             boolean result = super.remove(customer);
              for(int i = 0; i < customer.customerCCListSize(); i++){
                 Iterator ccIterator = customer.iterator();
                 CreditCard  current = (CreditCard) ccIterator.next();
@@ -125,7 +118,7 @@ public class CustomerList implements Serializable{
      * */
     public Iterator getCustomers()
     {
-        return customers.iterator();
+        return super.iterator();
     }
 
 }

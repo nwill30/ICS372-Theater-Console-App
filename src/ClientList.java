@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by z077391 on 6/20/2017.
  */
-public class ClientList implements Serializable{
+public class ClientList extends ItemList<Client,String>{
     private static final long serialVersionUIS =1L;
     private List clients =new LinkedList();
     private static ClientList clientList;
@@ -27,18 +27,13 @@ public class ClientList implements Serializable{
 
     /**
      * Checks whether a member with a given member id exists.
-     * @param memberId the id of the member
+     * @param clientId the id of the member
      * @return true iff member exists
      *
      */
-    public Client search(String memberId) {
-        for (Iterator iterator = clients.iterator(); iterator.hasNext(); ) {
-            Client client = (Client) iterator.next();
-            if (client.getId().equals(memberId)) {
-                return client;
-            }
-        }
-        return null;
+    public Client search(String clientId) {
+
+        return super.search(clientId);
     }
 
     /**
@@ -47,8 +42,8 @@ public class ClientList implements Serializable{
      * @return true iff the member could be inserted. Currently always true
      */
     public boolean insertClient(Client client) {
-        clients.add(client);
-        return true;
+
+        return super.add(client);
     }
 
     /**
