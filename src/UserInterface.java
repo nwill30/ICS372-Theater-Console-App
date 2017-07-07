@@ -100,6 +100,9 @@ public class UserInterface {
                 case PAY_CLIENT:
                     payClient();
                     break;
+                case PRINT_TICKETS:
+                    printTickets();
+                    break;
                 case HELP:
                     help();
                     break;
@@ -744,6 +747,34 @@ public class UserInterface {
         cl.setBalance(cl.getBalance() - amountToBePaid);
         System.out.println("Paid : " + amountToBePaid + " Client's new balance: " + cl.getBalance());
 
+
+    }
+
+    /**
+     * Print tickets for a day
+     */
+
+    public void printTickets() {
+
+        String printDate = getToken("Enter a date in YYYY-MM-DD format for printing the tickets");
+        Ticket ticket;
+
+        Date date = null;
+        String pattern = "yyyy-MM-dd";
+        try {
+            date = new SimpleDateFormat(pattern).parse(printDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Iterator<Ticket> ticketListItr = theater.getTicketsList().iterator();
+
+        while (ticketListItr.hasNext()) {
+            ticket = ticketListItr.next();
+            if ((date.compareTo(ticket.getShowDate().getTime()) == 0)) {
+                System.out.println(ticket.toString());
+            }
+        }
 
     }
 

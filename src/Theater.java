@@ -24,8 +24,8 @@ public class Theater implements Serializable{
     private ClientList clientList;
     private CreditCardList creditCardList;
     private CustomerList customerList;
-    private static Theater theater;
     private List<Ticket> ticketsList;
+    private static Theater theater;
 
 
 
