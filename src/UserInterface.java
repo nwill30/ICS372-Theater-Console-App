@@ -80,6 +80,8 @@ public class UserInterface {
     }
 
 
+
+
     /**
      * Made private for singleton pattern.
      * Conditionally looks for any saved data. Otherwise, it gets
@@ -249,6 +251,15 @@ public class UserInterface {
         System.out.println(STORE_DATA + " to  save data");
         System.out.println(RETRIEVE_DATA + " to  retrieve data");
         System.out.println(HELP + " for help");
+    }
+
+    /**
+     * Method to sell regular tickets
+     */
+    private void regular() {
+        String id = getToken("Enter ticket quantity");
+
+
     }
 
     /**

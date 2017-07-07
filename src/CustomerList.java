@@ -7,9 +7,7 @@ import java.util.List;
 /**
  * Created by teche on 6/21/2017.
  */
-public class CustomerList implements Serializable{
-    private static final long serialVersionUIS =1L;
-    private List customers = new LinkedList();
+public class CustomerList extends ItemList<Customer, String>{
     private static CustomerList customerList;
     /**
      * Private constructor for singleton pattern
@@ -32,13 +30,7 @@ public class CustomerList implements Serializable{
      *
      */
     public Customer search(String customerId) {
-        for (Iterator iterator = customers.iterator(); iterator.hasNext(); ) {
-            Customer customer = (Customer) iterator.next();
-            if (customer.getId().equals(customerId)) {
-                return customer;
-            }
-        }
-        return null;
+        return super.search(customerId);
     }
 
     /**
@@ -47,8 +39,7 @@ public class CustomerList implements Serializable{
      * @return true iff the member could be inserted. Currently always true
      */
     public boolean insertCustomer(Customer customer) {
-        customers.add(customer);
-        return true;
+       return super.add(customer);
     }
 
     /**
@@ -56,47 +47,31 @@ public class CustomerList implements Serializable{
      * @param customerId customer id
      * @return true iff customer could be removed
      * */
-    public boolean removeCustomer(String customerId)
-    {
-        Customer customer = search(customerId);
-        if(customer == null)
-        {
-            return false;
-        }else{
-             boolean result = customers.remove(customer);
-             for(int i = 0; i < customer.customerCCListSize(); i++){
-                Iterator ccIterator = customer.iterator();
-                CreditCard  current = (CreditCard) ccIterator.next();
-                CreditCardList.instance().removeCreditCard(current.getCreditCardNumber());
-
-             }
-            return result;
+  public boolean removeCustomer(String customerId) {
+            Customer customer = search(customerId);
+            if (customer == null) {
+                return false;
+            } else {
+                return super.remove(customer);
+            }
         }
-
-    }
 
     /**
      * Supports serialization
      * @param output the stream to be written to
      */
-    private void writeObject(java.io.ObjectOutputStream output) {
-        try {
+    private void writeObject(java.io.ObjectOutputStream output)
+                    throws IOException {
             output.defaultWriteObject();
             output.writeObject(customerList);
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
     }
 
     /**
      * Supports serialization
      *  @param input the stream to be read from
      */
-    private void readObject(java.io.ObjectInputStream input) {
-        try {
-            if (customerList != null) {
-                return;
-            } else {
+    private void readObject(java.io.ObjectInputStream input)
+                    throws IOException, ClassNotFoundException {
                 input.defaultReadObject();
                 if (customerList == null) {
                     customerList = (CustomerList) input.readObject();
@@ -104,17 +79,13 @@ public class CustomerList implements Serializable{
                     input.readObject();
                 }
             }
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        } catch(ClassNotFoundException cnfe) {
-            cnfe.printStackTrace();
-        }
-    }
+
+
 
     /** String form of the collection
      *
      */
-    @Override
+   /* @Override
     public String toString() {
         return customers.toString();
     }
@@ -125,7 +96,7 @@ public class CustomerList implements Serializable{
      * */
     public Iterator getCustomers()
     {
-        return customers.iterator();
+        return super.iterator();
     }
 
 }
