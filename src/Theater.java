@@ -175,6 +175,39 @@ public class Theater implements Serializable{
         return null;
     }
 
+    public void addCreditCardExistingCustomer(String customerId, String creditCardNum, String creditCardExp){
+        Customer customer;
+        CreditCard creditCard = new CreditCard(creditCardNum,creditCardExp);
+        if(creditCardList.search(creditCard.getCreditCardNumber()) == null){
+            if(customerList.search(customerId) != null){
+                customer = customerList.search(customerId);
+                customer.customerAddCard(creditCard);
+                System.out.println(customer);
+            }
+            else{
+                System.out.println("Customer does not exist");
+            }
+        }
+        else{
+            System.out.println("Card already exists");
+        }
+    }
+
+    public void removeCard(String customerID, String creditCardNum){
+        Customer customer;
+        if (customerList.search(customerID) != null) {
+            customer = CustomerList.instance().search(customerID);
+            if (customer.customerCCListSize() > 1) {
+                customer.customerRemoveCard(creditCardList.search(creditCardNum));
+                System.out.println(customer);
+            }else
+                System.out.println("There must be at least 1 Credit Card on file");
+        }else{
+            System.out.println("Customer does not exist");
+        }
+
+    }
+
     public Show addShow(String showTitle, Calendar showDate, Integer showPeriod, Double ticketPrice,String clientId)
     {
         Show show = new Show(showTitle,showDate,showPeriod,ticketPrice);
@@ -182,12 +215,17 @@ public class Theater implements Serializable{
         if (client == null) {
             System.out.println("Specified client doesn't exist");
             return null;
-        } else {
+        }
+            boolean result = false;
+            //Iterator iterator = clientList.getClients();
+//            for(Iterator<ClientList> clientListIterator = clientList.getClients(); clientListIterator.hasNext();){
+//                Client currentClient = clientListIterator.next();
+//            }
             client.addShow(show);
             System.out.println("Show added for the client");
             System.out.println(client.toString());
             return show;
-        }
+
 
     }
 

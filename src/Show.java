@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Created by teche on 6/21/2017.
  */
-public class Show implements Serializable{
+public class Show implements Serializable, Matchable<String> {
 
     private String title;
     private String id;
@@ -101,5 +101,16 @@ public class Show implements Serializable{
                 ", period=" + period +
                 ", ticketPrice=" + ticketPrice +
                 '}';
+    }
+
+    /**
+     * Checks whether an item's key matches the given key.
+     *
+     * @param key the key value
+     * @return true iff the item's key matches the given key
+     */
+    @Override
+    public boolean matches(String key) {
+        return getTitle().equals(key);
     }
 }

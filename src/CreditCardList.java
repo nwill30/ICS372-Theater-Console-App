@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CreditCardList extends ItemList<CreditCard, String>{
     private static final long serialVersionUIS =1L;
-    private List creditCards =new LinkedList();
+    private List creditCards = new LinkedList();
     private static CreditCardList creditCardList;
     /**
      * Private constructor for singleton pattern

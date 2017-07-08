@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ClientList extends ItemList<Client,String>{
     private static final long serialVersionUIS =1L;
-    private List clients =new LinkedList();
+    private List clients = new LinkedList();
     private static ClientList clientList;
     /**
      * Private constructor for singleton pattern
@@ -112,6 +112,6 @@ public class ClientList extends ItemList<Client,String>{
      * */
     public Iterator getClients()
     {
-        return clients.iterator();
+        return super.iterator();
     }
 }
