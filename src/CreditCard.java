@@ -38,4 +38,15 @@ public class CreditCard implements Serializable, Matchable<String> {
                 ", creditCardExp='" + creditCardExp + '\'' +
                 '}';
     }
+
+    /**
+     * Checks whether an item's key matches the given key.
+     *
+     * @param key the key value
+     * @return true iff the item's key matches the given key
+     */
+    @Override
+    public boolean matches(String key) {
+        return getCreditCardNumber().equals(key);
+    }
 }

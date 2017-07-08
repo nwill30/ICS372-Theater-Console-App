@@ -102,4 +102,14 @@ public class Client implements Serializable, Matchable<String> {
     }
 
 
+    /**
+     * Checks whether an item's key matches the given key.
+     *
+     * @param key the key value
+     * @return true iff the item's key matches the given key
+     */
+    @Override
+    public boolean matches(String key) {
+        return id.equals(key);
+    }
 }

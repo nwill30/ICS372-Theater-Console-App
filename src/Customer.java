@@ -95,4 +95,15 @@ public class Customer implements Serializable, Iterable, Matchable<String> {
     public void setCustomerTickets(List<Ticket> customerTickets) {
         this.customerTickets = customerTickets;
     }
+
+    /**
+     * Checks whether an item's key matches the given key.
+     *
+     * @param key the key value
+     * @return true iff the item's key matches the given key
+     */
+    @Override
+    public boolean matches(String key) {
+        return getId().equals(key);
+    }
 }

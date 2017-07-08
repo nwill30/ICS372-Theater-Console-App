@@ -428,7 +428,8 @@ public class UserInterface {
         result = theater.addShow(showTitle, showDate, showPeriod, ticketPrice, clientId);
         if (result == null) {
             System.out.println("Could not add show");
-        } else {
+        }
+        else {
             System.out.println(result.toString());
         }
 
@@ -453,32 +454,15 @@ public class UserInterface {
 
     public void addCard() {
         String customerId = getToken("Enter customer id");
-        Customer customer;
-        if (CustomerList.instance().search(customerId) != null) {
-            customer = CustomerList.instance().search(customerId);
-            String creditCardNumber = getToken("Enter Credit Card Number");
-            String creditCardExpirationDate = getToken("Enter Credit Card Expiration Date");
-            CreditCard creditCard = new CreditCard(creditCardNumber, creditCardExpirationDate);
-            customer.customerAddCard(creditCard);
-            System.out.println(customer);
-        } else {
-            System.out.println("Customer does not exist");
-        }
-
+        String creditCardNumber = getToken("Enter Credit Card Number");
+        String creditCardExpirationDate = getToken("Enter Credit Card Expiration Date");
+        theater.addCreditCardExistingCustomer(customerId,creditCardNumber,creditCardExpirationDate);
     }
 
     public void removeCard() {
         String customerId = getToken("Enter customer id");
-        Customer customer;
-        if (CustomerList.instance().search(customerId) != null) {
-            customer = CustomerList.instance().search(customerId);
-            if (customer.customerCCListSize() > 1) {
-                String ccNumToRemove = getToken("Enter the credit card number for removal");
-                customer.customerRemoveCard(CreditCardList.instance().search(ccNumToRemove));
-                System.out.println(customer);
-            } else
-                System.out.println("There must be at least 1 Credit Card on file");
-        }
+        String ccNumToRemove = getToken("Enter the credit card number for removal");
+        theater.removeCard(customerId,ccNumToRemove);
 
     }
 
